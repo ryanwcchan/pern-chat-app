@@ -8,6 +8,8 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.json())
+
 app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 
