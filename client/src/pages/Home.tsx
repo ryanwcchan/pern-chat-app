@@ -11,13 +11,13 @@ export default function Home() {
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-neutral-content text-center">
-        <div className="max-w-md glass p-[3rem] rounded-lg">
+        <div className="max-w-md glass p-[3rem] rounded-lg bg-primary">
           <h1 className="mb-5 text-5xl font-bold">Chat with your friends</h1>
           <p className="mb-5">
             Send messages, share memories, and stay close with the people who
             matter most.
           </p>
-          <button className="btn btn-primary">
+          <button className="btn btn-info">
             <Link to={"/login"}>Start chatting</Link>
           </button>
         </div>

@@ -3,14 +3,14 @@ import React from "react";
 export default function Signup() {
   return (
     <div className="m-[3rem] flex flex-col justify-center items-center min-h-[70vh]">
-      <div className="flex flex-col gap-4 p-[3rem] rounded-lg shadow shadow-gray-400">
+      <div className="flex flex-col gap-4 p-[3rem] rounded-lg shadow shadow-gray-400 bg-white">
         <h1 className="text-3xl font-semibold">Register</h1>
         <form className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <label className="font-semibold">Username:</label>
             <input
               type="text"
-              className="input input-bordered grow"
+              className="input input-bordered grow bg-gray-50"
               placeholder="Username"
               name="username"
               required
@@ -20,7 +20,7 @@ export default function Signup() {
             <label className="font-semibold">Full Name:</label>
             <input
               type="text"
-              className="input input-bordered grow"
+              className="input input-bordered grow bg-gray-50"
               placeholder="Full Name"
               name="fullName"
               required
@@ -28,7 +28,10 @@ export default function Signup() {
           </div>
           <div className="flex flex-col gap-2">
             <label className="font-semibold">Gender:</label>
-            <select className="select select-bordered w-full max-w-xs" required>
+            <select
+              className="select select-bordered w-full max-w-xs bg-gray-50"
+              required
+            >
               <option disabled defaultValue={"Select Gender"}>
                 Select Gender
               </option>
@@ -40,7 +43,7 @@ export default function Signup() {
             <label className="font-semibold">Password:</label>
             <input
               type="password"
-              className="input input-bordered grow"
+              className="input input-bordered grow bg-gray-50"
               placeholder="Password"
               name="password"
               required
@@ -50,7 +53,7 @@ export default function Signup() {
             <label className="font-semibold">Confirm Password:</label>
             <input
               type="password"
-              className="input input-bordered grow"
+              className="input input-bordered grow bg-gray-50"
               placeholder="Confirm Password"
               name="confirmPassword"
               required
