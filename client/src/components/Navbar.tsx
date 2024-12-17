@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-
   const navItems = [
     {
       label: "Home",
@@ -15,16 +14,20 @@ export default function Navbar() {
       label: "Sign Up",
       link: "/signup",
     },
-  ]
+  ];
 
   return (
-    <nav className="flex items-center justify-between w-full p-[2rem] border-b-2 border-gray-200">
-      <div className="font-bold text-4xl">Messenger</div>
+    <nav className="flex items-center justify-between w-full p-[2rem] navbar bg-neutral">
+      <div className="font-bold text-4xl text-white">Messenger</div>
       <ul className="flex gap-[2rem]">
         {navItems.map((item) => (
-          <li key={item.link} className="font-bold text-2xl hover:underline hover:text-red-500">
-            <Link to={item.link}>{item.label}</Link>
-          </li>
+          <Link
+            to={item.link}
+            className="font-bold text-2xl text-white btn btn-ghost"
+            key={item.link}
+          >
+            <li>{item.label}</li>
+          </Link>
         ))}
       </ul>
     </nav>
