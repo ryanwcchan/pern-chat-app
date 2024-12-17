@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   return (
@@ -59,7 +59,11 @@ export default function Signup() {
               required
             />
           </div>
+          <button className="btn btn-info">Sign Up</button>
         </form>
+        <Link to={"/login"} className="link link-info">
+          Already have an account?
+        </Link>
       </div>
     </div>
   );

@@ -146,7 +146,27 @@ export const getMe = async (req: Request, res: Response): Promise<void> => {
             username: user.username,
             profilePic: user.profilePic
         })
-        
+
+    } catch (error: any) {
+        console.log("Error in logout controller", error.message)
+        res.status(500).json({ error: "Internal Server Error" })
+    }
+}
+
+export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const users = await prisma.user.findMany({
+            select: {
+                id: true,
+                fullName: true,
+                username: true,
+                gender: true,
+                profilePic: true,
+                createdAt: true
+            }
+        })
+
+        res.status(200).json(users)
     } catch (error: any) {
         console.log("Error in logout controller", error.message)
         res.status(500).json({ error: "Internal Server Error" })

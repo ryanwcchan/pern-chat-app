@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -32,7 +33,13 @@ export default function Login() {
             </svg>
             <input type="password" className="grow" placeholder="Password" />
           </label>
+          <button type="submit" className="btn btn-info">
+            Login
+          </button>
         </form>
+        <Link to={"/signup"} className="link link-info">
+          Don't have an account?
+        </Link>
       </div>
     </div>
   );
