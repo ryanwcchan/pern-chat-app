@@ -1,0 +1,13 @@
+import React from "react";
+import SearchInput from "./SearchInput";
+import Chats from "./Chats";
+
+export default function Sidebar() {
+  return (
+    <div className="flex flex-col border-r border-slate-500 w-fit">
+      <SearchInput />
+      <div className="divider m-0"></div>
+      <Chats />
+    </div>
+  );
+}
