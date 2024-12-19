@@ -3,9 +3,11 @@ import MessageContainer from "../components/MessageContainer";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-1">
-      <Sidebar />
-      <MessageContainer />
+    <div className="h-full">
+      <div className="flex h-[calc(100vh-8rem)]">
+        <Sidebar />
+        <MessageContainer />
+      </div>
       {/* <div className="grid grid-cols-4">
         <div className="grid">
           <h1 className="text-3xl font-semibold">Friends</h1>

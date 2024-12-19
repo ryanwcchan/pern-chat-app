@@ -8,6 +8,7 @@ import Signup from "./pages/Signup.tsx";
 import Home from "./pages/Home.tsx";
 import { PrivateRoute } from "./components/PrivateRoute.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import { AuthContextProvider } from "./context/AuthProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </StrictMode>
 );
