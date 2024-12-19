@@ -1,10 +1,11 @@
-import React from "react";
 import Sidebar from "../components/Sidebar";
+import MessageContainer from "../components/MessageContainer";
 
 export default function Dashboard() {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
+      <MessageContainer />
       {/* <div className="grid grid-cols-4">
         <div className="grid">
           <h1 className="text-3xl font-semibold">Friends</h1>
