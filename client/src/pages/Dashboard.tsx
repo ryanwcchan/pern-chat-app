@@ -3,7 +3,7 @@ import MessageContainer from "../components/MessageContainer";
 
 export default function Dashboard() {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-1">
       <Sidebar />
       <MessageContainer />
       {/* <div className="grid grid-cols-4">

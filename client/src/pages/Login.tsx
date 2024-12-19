@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
-    <div className="m-[3rem] flex flex-col justify-center items-center min-h-[70vh]">
+    <div className="m-[3rem] flex flex-col justify-center items-center flex-1">
       <div className="flex flex-col gap-4 p-[3rem] rounded-lg shadow shadow-gray-400 bg-white">
         <h1 className="text-3xl font-semibold">Login</h1>
         <form className="flex flex-col gap-4">

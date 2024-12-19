@@ -10,8 +10,10 @@ function App() {
 
   return (
     <AuthContextProvider>
-      <Navbar />
-      <Outlet />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <Outlet />
+      </div>
     </AuthContextProvider>
   );
 }
