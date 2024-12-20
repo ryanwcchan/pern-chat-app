@@ -1,0 +1,29 @@
+import { useState, useEffect } from "react";
+
+const useGetConversations = () => {
+  const [loading, setLoading] = useState(false);
+  // ConversationType from global types
+  const [conversations, setConversations] = useState<ConversationType[]>([]);
+
+  useEffect(() => {
+    const fetchConversations = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("/api/chats");
+        const data = await response.json();
+
+        setConversations(data.conversations || []);
+      } catch (error) {
+        console.log("Error in useGetConversation", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchConversations();
+  }, []);
+
+  return { conversations, setConversations, loading };
+};
+
+export default useGetConversations;

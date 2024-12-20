@@ -9,9 +9,13 @@ import protectRoute from "../middleware/protectRoute";
 
 const router = express.Router();
 
-router.post("/send/:id", protectRoute, sendMessage);
-router.get("/conversations", protectRoute, getConversations);
-router.get("/:conversationId", protectRoute, getConversationMessages);
-router.delete("/delete/:messageId", protectRoute, deleteMessage);
+router.get("/", protectRoute, getConversations); // Fetch all conversations
+router.post("/message/:id", protectRoute, sendMessage); // Send a message to user(ID)
+router.get(
+  "/conversation/:conversationId/messages",
+  protectRoute,
+  getConversationMessages
+); // Fetch all messages of a conversation
+router.delete("/messages/:messageId", protectRoute, deleteMessage); // Delete a message by message id
 
 export default router;

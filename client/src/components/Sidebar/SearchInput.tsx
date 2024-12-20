@@ -10,7 +10,7 @@ export default function SearchInput() {
           placeholder="Search"
           className="input input-bordered bg-white focus:outline-none"
         />
-        <button type="submit" className="btn btn-square">
+        <button type="submit" className="btn btn-square bg-info text-white">
           <IoSearchSharp className="w-6 h-6 outline-none" />
         </button>
       </form>

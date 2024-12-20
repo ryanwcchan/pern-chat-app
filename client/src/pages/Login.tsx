@@ -66,7 +66,7 @@ export default function Login() {
               required
             />
           </label>
-          <button type="submit" className="btn btn-info">
+          <button type="submit" className="btn btn-info" disabled={loading}>
             {loading ? "Loading..." : "Login"}
           </button>
         </form>

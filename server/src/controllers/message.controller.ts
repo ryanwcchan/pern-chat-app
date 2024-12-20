@@ -107,7 +107,7 @@ export const getConversationMessages = async (
 ): Promise<void> => {
   try {
     const { conversationId } = req.params;
-    console.log("conversationId:", conversationId);
+    console.log("Fetched messages from Conversation Id:", conversationId);
 
     const conversation = await prisma.conversations.findUnique({
       where: { id: conversationId },

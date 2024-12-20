@@ -95,7 +95,7 @@ export default function Signup() {
               }
             />
           </div>
-          <button type="submit" className="btn btn-info">
+          <button type="submit" className="btn btn-info" disabled={loading}>
             {loading ? "Loading..." : "Sign Up"}
           </button>
         </form>
