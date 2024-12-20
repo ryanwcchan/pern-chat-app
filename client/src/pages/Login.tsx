@@ -1,12 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import useLogin from "../Hooks/useLogin";
 
 export default function Login() {
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+  });
+
+  const { login, loading } = useLogin();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    login(inputs);
+  };
+
   return (
     <div className="m-[3rem] flex flex-col justify-center items-center flex-1">
       <div className="flex flex-col gap-4 p-[3rem] rounded-lg shadow shadow-gray-400 bg-white">
         <h1 className="text-3xl font-semibold">Login</h1>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <label className="input input-bordered flex items-center gap-2 bg-gray-50">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +31,16 @@ export default function Login() {
             >
               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
             </svg>
-            <input type="text" className="grow" placeholder="Username" />
+            <input
+              type="text"
+              className="grow"
+              placeholder="Username"
+              value={inputs.username}
+              onChange={(e) =>
+                setInputs({ ...inputs, username: e.target.value })
+              }
+              required
+            />
           </label>
           <label className="input input-bordered flex items-center gap-2 bg-gray-50">
             <svg
@@ -31,10 +55,19 @@ export default function Login() {
                 clipRule="evenodd"
               />
             </svg>
-            <input type="password" className="grow" placeholder="Password" />
+            <input
+              type="password"
+              className="grow"
+              placeholder="Password"
+              value={inputs.password}
+              onChange={(e) =>
+                setInputs({ ...inputs, password: e.target.value })
+              }
+              required
+            />
           </label>
           <button type="submit" className="btn btn-info">
-            Login
+            {loading ? "Loading..." : "Login"}
           </button>
         </form>
         <Link to={"/signup"} className="link link-info">

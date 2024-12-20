@@ -1,5 +1,5 @@
 import SearchInput from "./SearchInput";
-import Chats from "./Chats";
+import Chats from "../Chats/Chats";
 
 export default function Sidebar() {
   return (

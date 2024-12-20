@@ -6,9 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login.tsx";
 import Signup from "./pages/Signup.tsx";
 import Home from "./pages/Home.tsx";
-import { PrivateRoute } from "./components/PrivateRoute.tsx";
+import { PrivateRoute } from "./routes/PrivateRoute.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import { AuthContextProvider } from "./context/AuthProvider.tsx";
+import { RedirectRoute } from "./routes/RedirectRoute.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,15 +22,29 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <RedirectRoute>
+            <Login />
+          </RedirectRoute>
+        ),
       },
       {
         path: "/signup",
-        element: <Signup />,
+        element: (
+          <RedirectRoute>
+            <Signup />
+          </RedirectRoute>
+        ),
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: "/dashboard",
+            element: <Dashboard />,
+          },
+        ],
       },
     ],
   },

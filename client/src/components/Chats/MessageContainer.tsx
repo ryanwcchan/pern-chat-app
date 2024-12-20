@@ -29,10 +29,10 @@ export default function MessageContainer() {
         <Message />
         <Message />
       </div>
-      <form className="flex items-center p-4">
+      <form className="flex items-center gap-2 p-4">
         <input
           type="text"
-          className="input input-bordered w-full"
+          className="input input-bordered w-full bg-white focus:outline-none"
           placeholder="Send message"
         />
         <button className="btn">Send</button>

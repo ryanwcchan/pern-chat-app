@@ -1,5 +1,5 @@
-import Sidebar from "../components/Sidebar";
-import MessageContainer from "../components/MessageContainer";
+import Sidebar from "../components/Sidebar/Sidebar";
+import MessageContainer from "../components/Chats/MessageContainer";
 
 export default function Dashboard() {
   return (

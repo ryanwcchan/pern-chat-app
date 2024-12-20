@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/useAuthContext";
+import LogoutButton from "./LogoutButton";
 
 export default function Navbar() {
-  const navItems = [
+  const { authUser } = useAuthContext();
+
+  const loggedOutNavItems = [
     {
       label: "Home",
       link: "/",
@@ -16,8 +20,30 @@ export default function Navbar() {
     },
   ];
 
+  const loggedInNavItems = [
+    {
+      label: "Home",
+      link: "/",
+    },
+    {
+      label: "Profile",
+      link: "/profile",
+    },
+    {
+      label: "Chats",
+      link: "/dashboard",
+    },
+    {
+      label: "Logout",
+      link: "/login",
+    },
+  ];
+
+  const navItems = authUser ? loggedInNavItems : loggedOutNavItems;
+
   return (
     <nav className="flex items-center justify-between w-full p-[2rem] navbar bg-neutral">
+      {/* Mobile Nav */}
       <div className="navbar lg:hidden">
         <div className="dropdown">
           <div
@@ -50,13 +76,17 @@ export default function Navbar() {
                 className="font-bold text-2xl text-white btn btn-ghost"
                 key={item.link}
               >
-                <li>{item.label}</li>
+                {(item.label === "Logout" && <LogoutButton />) || item.label}
               </Link>
             ))}
           </ul>
         </div>
       </div>
+
+      {/* Logo */}
       <div className="font-bold text-4xl text-white">Messenger</div>
+
+      {/* Desktop Nav */}
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal">
           {navItems.map((item) => (
