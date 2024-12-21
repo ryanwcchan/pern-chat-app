@@ -42,14 +42,14 @@ export default function Navbar() {
   const navItems = authUser ? loggedInNavItems : loggedOutNavItems;
 
   return (
-    <nav className="flex items-center justify-between w-full p-[2rem] navbar bg-neutral">
+    <nav className="flex items-center justify-between w-full p-[2rem] navbar bg-primary">
       {/* Mobile Nav */}
       <div className="navbar lg:hidden">
         <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost lg:hidden text-white"
+            className="btn btn-ghost lg:hidden text-black"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,12 +68,12 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-info rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-primary border-2 border-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {navItems.map((item) => (
               <Link
                 to={item.link}
-                className="font-bold text-2xl text-white btn btn-ghost"
+                className="font-bold text-2xl text-black btn btn-ghost"
                 key={item.link}
               >
                 {(item.label === "Logout" && <LogoutButton />) || item.label}
@@ -83,22 +83,31 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Logo */}
-      <div className="font-bold text-4xl text-white">Messenger</div>
-
       {/* Desktop Nav */}
-      <div className="navbar-end hidden lg:flex">
+      <div className="navbar-start hidden lg:flex">
         <ul className="menu menu-horizontal">
           {navItems.map((item) => (
             <Link
               to={item.link}
-              className="font-bold text-2xl text-white btn btn-ghost"
+              className="font-bold text-2xl text-black btn btn-ghost"
               key={item.link}
             >
-              <li>{item.label}</li>
+              {(item.label === "Logout" && <LogoutButton />) || item.label}
             </Link>
           ))}
         </ul>
+      </div>
+
+      {/* Logo */}
+      <div>
+        <div className="font-bold text-4xl text-black">Messenger</div>
+        {authUser && (
+          <img
+            className="w-12 mx-4"
+            src={authUser?.profilePic}
+            alt="profile pic"
+          />
+        )}
       </div>
     </nav>
   );
