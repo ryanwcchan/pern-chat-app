@@ -12,6 +12,7 @@ const useGetConversations = () => {
         const response = await fetch("/api/chats");
         const data = await response.json();
 
+        console.log(data.conversations);
         setConversations(data.conversations || []);
       } catch (error) {
         console.log("Error in useGetConversation", error);

@@ -1,6 +1,7 @@
 // Global types
 
 type ConversationType = {
+  users: any;
   id: string;
   username: string;
   fullName: string;

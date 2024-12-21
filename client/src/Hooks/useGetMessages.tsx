@@ -1,17 +1,28 @@
 import { useState, useEffect } from "react";
-import useGetConversation from "./useGetConversation";
+import useConversation from "../zustand/useConversation";
 
 const useGetMessages = () => {
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<MessageType[]>([]);
 
-  const { conversation } = useGetConversation();
+  const { selectedConversation } = useConversation();
 
   useEffect(() => {
     const fetchMessages = async () => {
+      if (!selectedConversation) {
+        console.log("Conversation Id not found");
+        return;
+      }
+
       try {
         setLoading(true);
-        const response = await fetch(`/api/messages/${conversation?.id}`);
+        const response = await fetch(
+          `/api/chats/conversation/${selectedConversation.id}/messages`
+        );
+        const data = await response.json();
+
+        console.log(data);
+        setMessages(data || []);
       } catch (error) {
         console.log("Error in useGetMessages", error);
       } finally {
@@ -20,7 +31,7 @@ const useGetMessages = () => {
     };
 
     fetchMessages();
-  }, []);
+  }, [selectedConversation]);
 
   return { messages, setMessages, loading };
 };

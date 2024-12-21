@@ -1,7 +1,8 @@
 import Message from "./Message";
 import useConversation from "../../zustand/useConversation";
+import useGetMessages from "../../Hooks/useGetMessages";
 
-function defaultScreen() {
+function DefaultScreen() {
   return (
     <div className="flex flex-col justify-center items-center flex-1">
       <h1 className="text-3xl font-semibold text-wrap px-[3rem] text-center">
@@ -11,14 +12,25 @@ function defaultScreen() {
   );
 }
 
-function conversationScreen() {
+function ConversationScreen({ messages }: { messages: any[] }) {
+  const { selectedConversation } = useConversation();
+
   return (
-    <div>
-      <div className="bg-info p-[1.5rem]">
-        <h1 className="text-3xl font-semibold text-white">Name</h1>
+    <div className="flex flex-col h-full">
+      {/* Conversation Header */}
+      <div className="bg-info p-[1.5rem] flex flex-col gap-2">
+        <h1 className="text-3xl font-semibold text-white">
+          {(selectedConversation && selectedConversation.users[1]?.fullName) ||
+            "Chat"}
+        </h1>
+        <h2 className="text-white opacity-80">
+          {selectedConversation?.users[1]?.username}
+        </h2>
       </div>
       <div className="p-4 overflow-auto flex-1">
-        <Message />
+        {messages.map((message) => (
+          <Message key={message.id} message={message} />
+        ))}
       </div>
       <form className="flex items-center gap-2 p-4 ">
         <input
@@ -34,10 +46,15 @@ function conversationScreen() {
 
 export default function MessageContainer() {
   const { selectedConversation } = useConversation();
+  const { messages } = useGetMessages();
 
   return (
     <div className="flex flex-col w-full">
-      {selectedConversation ? conversationScreen() : defaultScreen()}
+      {selectedConversation ? (
+        <ConversationScreen messages={messages} />
+      ) : (
+        <DefaultScreen />
+      )}
     </div>
   );
 }

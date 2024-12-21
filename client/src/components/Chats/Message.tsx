@@ -1,4 +1,14 @@
-export default function Message() {
+export default function Message({ message }: any) {
+  const formattedDate = new Date(message.createdAt).toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+
   return (
     <div className="chat chat-start">
       <div className="chat-image avatar">
@@ -9,8 +19,8 @@ export default function Message() {
           />
         </div>
       </div>
-      <div className="chat-bubble">Hello this is a message.</div>
-      <div className="chat-footer opacity-50">12:42</div>
+      <div className="chat-bubble">{message.content}</div>
+      <div className="chat-footer opacity-50">{formattedDate}</div>
     </div>
   );
 }
