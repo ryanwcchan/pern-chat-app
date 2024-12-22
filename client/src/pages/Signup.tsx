@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import useSignup from "../Hooks/useSignup";
+import useSignup from "../hooks/useSignup";
 
 export default function Signup() {
   const [inputs, setInputs] = useState({

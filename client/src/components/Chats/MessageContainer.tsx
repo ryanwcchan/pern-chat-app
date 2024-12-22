@@ -1,7 +1,9 @@
 import Message from "./Message";
 import useConversation from "../../zustand/useConversation";
-import useGetMessages from "../../Hooks/useGetMessages";
+import useGetMessages from "../../hooks/useGetMessages";
 import { useAuthContext } from "../../context/useAuthContext";
+import MessageInput from "./MessageInput";
+import { useEffect, useRef } from "react";
 
 function DefaultScreen() {
   return (
@@ -16,6 +18,23 @@ function DefaultScreen() {
 function ConversationScreen({ messages }: { messages: MessageType[] }) {
   const { selectedConversation } = useConversation();
   const { authUser } = useAuthContext();
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to the bottom when the component is mounted
+  useEffect(() => {
+    scrollToBottom(); // Initial scroll
+  }, []);
+
+  // Scroll to the bottom when messages change
+  useEffect(() => {
+    scrollToBottom(); // Scroll on new message
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView();
+    }
+  };
 
   if (!selectedConversation) {
     return <div>No conversation selected</div>;
@@ -45,17 +64,11 @@ function ConversationScreen({ messages }: { messages: MessageType[] }) {
       </div>
       <div className="p-4 overflow-auto flex-1">
         {messages.map((message) => (
-          <Message key={message.id} message={message} authUser={authUser} />
+          <Message key={message.id} message={message} />
         ))}
+        <div ref={chatEndRef} />
       </div>
-      <form className="flex items-center gap-2 p-4 ">
-        <input
-          type="text"
-          className="input input-bordered w-full bg-white focus:outline-none"
-          placeholder="Send message"
-        />
-        <button className="btn bg-info text-white">Send</button>
-      </form>
+      <MessageInput />
     </div>
   );
 }

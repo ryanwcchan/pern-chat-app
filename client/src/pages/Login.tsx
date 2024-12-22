@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import useLogin from "../Hooks/useLogin";
+import useLogin from "../hooks/useLogin";
 
 export default function Login() {
   const [inputs, setInputs] = useState({

@@ -3,9 +3,7 @@ import useConversation from "../zustand/useConversation";
 
 const useGetMessages = () => {
   const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState<MessageType[]>([]);
-
-  const { selectedConversation } = useConversation();
+  const { selectedConversation, setMessages, messages } = useConversation();
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -31,9 +29,9 @@ const useGetMessages = () => {
     };
 
     fetchMessages();
-  }, [selectedConversation]);
+  }, [selectedConversation, setMessages]);
 
-  return { messages, setMessages, loading };
+  return { messages, loading };
 };
 
 export default useGetMessages;

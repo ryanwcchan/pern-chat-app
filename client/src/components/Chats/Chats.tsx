@@ -1,5 +1,5 @@
 import Conversation from "./Conversation";
-import useGetConversations from "../../Hooks/useGetConversation";
+import useGetConversations from "../../hooks/useGetConversation";
 
 export default function Chats() {
   const { conversations, loading } = useGetConversations();

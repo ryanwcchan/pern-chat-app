@@ -57,6 +57,17 @@ export const sendMessage = async (
         userId: senderId,
         conversationId: conversation.id,
       },
+      include: {
+        user: {
+          // Include sender details
+          select: {
+            id: true,
+            username: true,
+            fullName: true,
+            profilePic: true,
+          },
+        },
+      },
     });
 
     res.status(200).json({
@@ -134,7 +145,7 @@ export const getConversationMessages = async (
         },
       },
       orderBy: {
-        updatedAt: "desc", // Sort messages by creation date (ascending)
+        updatedAt: "asc", // Sort messages by creation date (ascending)
       },
     });
 
