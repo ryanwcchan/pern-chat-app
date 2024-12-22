@@ -1,9 +1,10 @@
 import React from "react";
 import { IoSearchSharp } from "react-icons/io5";
+import { FaUserPlus } from "react-icons/fa";
 
 export default function SearchInput() {
   return (
-    <div className="p-4">
+    <div className="flex gap-2 first-line: p-4">
       <form className="flex items-center gap-2">
         <input
           type="text"
@@ -14,6 +15,9 @@ export default function SearchInput() {
           <IoSearchSharp className="w-6 h-6 outline-none" />
         </button>
       </form>
+      <button className="btn btn-square bg-info text-white">
+        <FaUserPlus className="w-6 h-6 outline-none" />
+      </button>
     </div>
   );
 }

@@ -79,7 +79,7 @@ export default function MessageContainer() {
 
   return (
     <div className="flex flex-col w-full">
-      {selectedConversation ? (
+      {selectedConversation && selectedConversation ? (
         <ConversationScreen messages={messages} />
       ) : (
         <DefaultScreen />

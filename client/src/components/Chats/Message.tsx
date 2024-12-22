@@ -16,7 +16,7 @@ export default function Message({ message }: { message: any }) {
   const fromMe = message.userId === authUser?.id;
 
   return (
-    <div className={`chat ${fromMe ? "chat-end" : "chat-start"}`}>
+    <div className={`chat py-2 ${fromMe ? "chat-end" : "chat-start"}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full mx-2">
           <img
@@ -26,13 +26,13 @@ export default function Message({ message }: { message: any }) {
         </div>
       </div>
       <div
-        className={`chat-bubble ${
-          fromMe ? "bg-info" : "bg-gray-300 shadow shadow-gray-400"
+        className={`chat-bubble break-words text-wrap ${
+          fromMe ? "bg-info text-white" : "bg-white shadow shadow-gray-400"
         }`}
       >
         {message.content}
       </div>
-      <div className="chat-footer opacity-50">{formattedDate}</div>
+      <div className="chat-footer opacity-50 pt-1">{formattedDate}</div>
     </div>
   );
 }

@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useAuthContext } from "../context/useAuthContext";
+import useConversation from "../zustand/useConversation";
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
+  const { setSelectedConversation } = useConversation();
 
   const logout = async () => {
     try {
@@ -20,6 +22,7 @@ const useLogout = () => {
       }
 
       setAuthUser(null);
+      setSelectedConversation(null);
     } catch (error: any) {
       console.error(error.message);
     } finally {

@@ -19,6 +19,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         const response = await fetch("/api/auth/me");
         const data = await response.json();
 
+        console.log(data);
+
         if (!response.ok) {
           throw new Error(data.error);
         }
