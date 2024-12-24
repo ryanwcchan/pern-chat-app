@@ -16,9 +16,11 @@ export default function Profile() {
           <img className="w-32 h-32" src={authUser?.profilePic} alt="" />
         </div>
         <div>
-          <h2 className="text-2xl font-semibold">{authUser?.fullName}</h2>
+          <h2 className="text-2xl font-bold">{authUser?.fullName}</h2>
           <p className="text-gray-400 font-semibold">{authUser?.username}</p>
-          <p className="">Gender: {authUser?.gender}</p>
+          <p className="font-semibold">
+            Gender: <span className="capitalize">{authUser?.gender}</span>
+          </p>
         </div>
       </div>
     </div>

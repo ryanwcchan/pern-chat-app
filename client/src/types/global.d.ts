@@ -9,6 +9,10 @@ type ConversationType = {
 };
 
 type MessageType = {
+  content: ReactNode;
+  user: any;
+  userId: string | undefined;
+  createdAt: string | number | Date;
   id: string;
   message: string;
   senderId: string;

@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard.tsx";
 import { AuthContextProvider } from "./context/AuthProvider.tsx";
 import { RedirectRoute } from "./routes/RedirectRoute.tsx";
 import Profile from "./pages/Profile.tsx";
+import AddUsers from "./pages/AddUsers.tsx";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,16 @@ const router = createBrowserRouter([
           {
             path: "/profile",
             element: <Profile />,
+          },
+        ],
+      },
+      {
+        path: "/addusers",
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: "/addusers",
+            element: <AddUsers />,
           },
         ],
       },

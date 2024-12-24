@@ -1,6 +1,6 @@
 import { useAuthContext } from "../../context/useAuthContext";
 
-export default function Message({ message }: { message: any }) {
+export default function Message({ message }: { message: MessageType }) {
   const { authUser } = useAuthContext();
 
   const formattedDate = new Date(message.createdAt).toLocaleString("en-US", {
