@@ -1,11 +1,8 @@
 import { IoSearchSharp } from "react-icons/io5";
-import { FaUserPlus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
-export default function SearchInput() {
-  const navigate = useNavigate();
+export default function UserSearchInput() {
   return (
-    <div className="flex gap-2 p-4">
+    <div className="flex gap-2 py-4">
       <form
         onSubmit={(e) => e.preventDefault}
         className="flex items-center gap-2"
@@ -19,12 +16,6 @@ export default function SearchInput() {
           <IoSearchSharp className="w-6 h-6 outline-none" />
         </button>
       </form>
-      <button
-        onClick={() => navigate("/addusers")}
-        className="btn btn-square bg-info text-white"
-      >
-        <FaUserPlus className="w-6 h-6 outline-none" />
-      </button>
     </div>
   );
 }
