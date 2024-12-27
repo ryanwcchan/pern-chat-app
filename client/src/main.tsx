@@ -39,11 +39,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard",
+        path: "/chat",
         element: <PrivateRoute />,
         children: [
           {
-            path: "/dashboard",
+            path: "/chat",
             element: <Dashboard />,
           },
         ],

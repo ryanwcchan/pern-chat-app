@@ -31,7 +31,7 @@ export default function Navbar() {
     },
     {
       label: "Chats",
-      link: "/dashboard",
+      link: "/chat",
     },
     {
       label: "Logout",
