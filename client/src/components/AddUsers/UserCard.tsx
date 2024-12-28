@@ -32,6 +32,8 @@ export default function UserCard({
       navigate(`/chat`);
     } else {
       const newConversation = await createConversation(user?.username || "");
+      console.log(newConversation);
+
       if (newConversation) {
         setConversations((prev: any) => {
           const updatedConversations = [...prev, newConversation];

@@ -13,9 +13,14 @@ const useSendMessage = () => {
       return;
     }
 
+    console.log("Selected Conversation:", selectedConversation);
+
     const recipient = selectedConversation.users.find(
-      (user: any) => user.id !== authUser // Exclude logged-in user to find the recipient
+      (user: any) => user.id !== authUser?.id // Exclude logged-in user to find the recipient
     );
+
+    console.log("authUser:", authUser);
+    console.log("Recipient:", recipient);
 
     try {
       setLoading(true);
@@ -31,7 +36,7 @@ const useSendMessage = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      console.log(data);
+      console.log(`Message sent to recipient: ${recipient.id}`, data);
 
       setMessages([...messages, data.message]);
     } catch (error) {

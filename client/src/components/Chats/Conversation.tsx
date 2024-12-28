@@ -3,7 +3,7 @@
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/useAuthContext";
 
-export default function Conversation({ conversation, setView }: any) {
+export default function Conversation({ conversation }: any) {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { authUser } = useAuthContext();
 
@@ -17,7 +17,9 @@ export default function Conversation({ conversation, setView }: any) {
 
   const handleClick = () => {
     setSelectedConversation(conversation);
-    setView("chat");
+    // if (window.innerWidth < 768) {
+    //   setView("chat");
+    // }
     console.log("Conversation clicked, convo id: ", conversation.id);
   };
 

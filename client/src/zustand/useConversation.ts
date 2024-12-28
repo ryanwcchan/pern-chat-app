@@ -21,8 +21,10 @@ interface ConversationState {
 
 const useConversation = create<ConversationState>((set) => ({
   selectedConversation: null,
-  setSelectedConversation: (conversation) =>
-    set({ selectedConversation: conversation }),
+  setSelectedConversation: (conversation) => {
+    console.log("Selected conversation set to:", conversation);
+    set({ selectedConversation: conversation });
+  },
   messages: [],
   setMessages: (messages) => set({ messages }),
 }));

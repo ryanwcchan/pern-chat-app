@@ -19,11 +19,9 @@ function DefaultScreen() {
 function ConversationScreen({
   messages,
   loading,
-  setView,
 }: {
   messages: MessageType[];
   loading: boolean;
-  setView: any;
 }) {
   const { selectedConversation } = useConversation();
   const { authUser } = useAuthContext();
@@ -31,8 +29,10 @@ function ConversationScreen({
 
   // Scroll to the bottom when the component is mounted
   useEffect(() => {
-    scrollToBottom(); // Initial scroll
-  }, []);
+    if (!loading) {
+      scrollToBottom(); // Initial scroll
+    }
+  }, [messages, loading]);
 
   // Scroll to the bottom when messages change
   useEffect(() => {
@@ -45,8 +45,8 @@ function ConversationScreen({
     }
   };
 
-  if (!selectedConversation) {
-    return <div>No conversation selected</div>;
+  if (!selectedConversation || !selectedConversation.users) {
+    return <DefaultScreen />;
   }
 
   const otherUser = selectedConversation.users.find(
@@ -54,16 +54,16 @@ function ConversationScreen({
   );
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col max-h-[calc(100vh-8rem)] flex-1">
       {/* Conversation Header */}
       <div className="bg-info p-[1.5rem] flex gap-4 items-center">
         {/* Back Button for mobile view */}
-        <button
+        {/* <button
           className="btn btn-square bg-info text-white md:hidden"
           onClick={() => setView("sidebar")}
         >
           <IoIosArrowBack />
-        </button>
+        </button> */}
         <div>
           <img
             className="w-12 rounded-full"
@@ -84,9 +84,14 @@ function ConversationScreen({
         </div>
       ) : (
         <div className="p-4 overflow-auto flex-1">
-          {messages.map((message) => (
-            <Message key={message.id} message={message} />
-          ))}
+          {/* Check if messages is an array before mapping */}
+          {Array.isArray(messages) ? (
+            messages.map((message) => (
+              <Message key={message.id} message={message} />
+            ))
+          ) : (
+            <div>No messages available</div>
+          )}
           <div ref={chatEndRef} />
         </div>
       )}
@@ -95,18 +100,14 @@ function ConversationScreen({
   );
 }
 
-export default function MessageContainer({ setView }: any) {
+export default function MessageContainer() {
   const { selectedConversation } = useConversation();
   const { messages, loading } = useGetMessages();
 
   return (
     <div className="flex flex-col w-full">
       {selectedConversation && selectedConversation ? (
-        <ConversationScreen
-          messages={messages}
-          loading={loading}
-          setView={setView}
-        />
+        <ConversationScreen messages={messages} loading={loading} />
       ) : (
         <DefaultScreen />
       )}
