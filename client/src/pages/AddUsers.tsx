@@ -8,22 +8,27 @@ import useGetConversations from "../hooks/useGetConversation";
 export default function AddUsers() {
   const { loading, users } = useGetAllUsers();
   const { authUser } = useAuthContext();
-  const { conversations } = useGetConversations();
+  const { conversations, setConversations } = useGetConversations();
   const navigate = useNavigate();
 
   if (!authUser) {
     navigate("/login");
   }
 
-  function existingConversation(checkUser: { username: string | undefined }) {
-    return conversations?.some((conversation) =>
-      conversation?.users?.some(
-        (user: { username: string | undefined }) =>
-          user?.username === authUser?.username &&
-          user?.username === checkUser.username
-      )
-    );
-  }
+  const authUserConversations = new Set(
+    conversations
+      ?.flatMap((conversation) => conversation?.users || [])
+      .filter((user) => user?.username !== authUser?.username)
+      .map((user) => user?.username)
+  );
+
+  console.log(authUserConversations);
+
+  const hasExistingConversation = (checkUser: {
+    username: string | undefined;
+  }) => {
+    return authUserConversations.has(checkUser.username);
+  };
 
   return (
     <div className="m-[3rem]">
@@ -45,7 +50,9 @@ export default function AddUsers() {
                   <UserCard
                     key={user.username}
                     user={user}
-                    existingConversation={existingConversation}
+                    hasExistingConversation={hasExistingConversation}
+                    conversations={conversations}
+                    setConversations={setConversations}
                   />
                 )
             )

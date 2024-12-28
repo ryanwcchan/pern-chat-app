@@ -4,6 +4,7 @@ import {
   getConversations,
   getConversationMessages,
   deleteMessage,
+  createConversation,
 } from "../controllers/message.controller";
 import protectRoute from "../middleware/protectRoute";
 
@@ -17,5 +18,6 @@ router.get(
   getConversationMessages
 ); // Fetch all messages of a conversation
 router.delete("/messages/:messageId", protectRoute, deleteMessage); // Delete a message by message id
+router.post("/conversation/:username", protectRoute, createConversation);
 
 export default router;

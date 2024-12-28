@@ -9,5 +9,5 @@ export const RedirectRoute = ({ children }: { children: React.ReactNode }) => {
     return <div>Loading...</div>; // Show a loading spinner or screen
   }
 
-  return authUser ? <Navigate to="/dashboard" /> : <>{children}</>;
+  return authUser ? <Navigate to="/chat" /> : <>{children}</>;
 };

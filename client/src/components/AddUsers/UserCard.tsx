@@ -1,16 +1,46 @@
 import { UserType } from "../../hooks/useGetAllUsers";
+import { useNavigate } from "react-router-dom";
+import useConversation from "../../zustand/useConversation";
+import useCreateConversation from "../../hooks/useCreateConversation";
 
 export default function UserCard({
   user,
-  existingConversation,
+  hasExistingConversation,
+  conversations,
+  setConversations,
 }: {
   user: UserType;
-  existingConversation: (checkUser: {
+  hasExistingConversation: (checkUser: {
     username: string | undefined;
   }) => boolean;
+  conversations: any;
+  setConversations: any;
 }) {
-  const handleNewConversation = () => {
-    alert(`Start new conversation with ${user?.username}`);
+  const { setSelectedConversation } = useConversation();
+  const navigate = useNavigate();
+  const { createConversation, loading } = useCreateConversation();
+
+  const navigateToChat = async () => {
+    if (hasExistingConversation(user)) {
+      const conversation =
+        conversations?.find((c) =>
+          c?.users?.some(
+            (u: { username: string }) => u?.username === user?.username
+          )
+        ) || null;
+      setSelectedConversation(conversation);
+      navigate(`/chat`);
+    } else {
+      const newConversation = await createConversation(user?.username || "");
+      if (newConversation) {
+        setConversations((prev: any) => {
+          const updatedConversations = [...prev, newConversation];
+          setSelectedConversation(newConversation);
+          return updatedConversations;
+        });
+        navigate(`/chat`);
+      }
+    }
   };
 
   if (!user) {
@@ -34,12 +64,8 @@ export default function UserCard({
         </div>
       </div>
       <div className="p-6">
-        <button
-          className="btn btn-info"
-          onClick={handleNewConversation}
-          disabled={existingConversation(user)}
-        >
-          Message
+        <button className="btn btn-info" onClick={navigateToChat}>
+          {hasExistingConversation(user) ? "Message" : "Add"}
         </button>
       </div>
     </div>

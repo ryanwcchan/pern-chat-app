@@ -177,3 +177,57 @@ export const deleteMessage = async (
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const createConversation = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { username: reciever } = req.params;
+    const sender = req.user.username;
+
+    let conversation = await prisma.conversations.findFirst({
+      where: {
+        AND: [
+          {
+            users: {
+              some: {
+                username: sender,
+              },
+            },
+          },
+          {
+            users: {
+              some: {
+                username: reciever,
+              },
+            },
+          },
+        ],
+      },
+    });
+
+    // If not conversation between the users exists, create a new one.
+    if (!conversation) {
+      conversation = await prisma.conversations.create({
+        data: {
+          users: {
+            connect: [
+              {
+                username: sender,
+              },
+              {
+                username: reciever,
+              },
+            ],
+          },
+        },
+      });
+    }
+
+    res.status(200).json({ conversation });
+  } catch (error) {
+    console.log("Error in create conversation controller", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
