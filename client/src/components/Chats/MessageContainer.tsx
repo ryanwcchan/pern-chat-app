@@ -15,7 +15,13 @@ function DefaultScreen() {
   );
 }
 
-function ConversationScreen({ messages }: { messages: MessageType[] }) {
+function ConversationScreen({
+  messages,
+  loading,
+}: {
+  messages: MessageType[];
+  loading: boolean;
+}) {
   const { selectedConversation } = useConversation();
   const { authUser } = useAuthContext();
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -62,12 +68,18 @@ function ConversationScreen({ messages }: { messages: MessageType[] }) {
           <h2 className="text-white opacity-80">{otherUser?.username}</h2>
         </div>
       </div>
-      <div className="p-4 overflow-auto flex-1">
-        {messages.map((message) => (
-          <Message key={message.id} message={message} />
-        ))}
-        <div ref={chatEndRef} />
-      </div>
+      {loading ? (
+        <div className="flex-1 flex justify-center items-center">
+          <span className="loading loading-spinner mx-auto" />
+        </div>
+      ) : (
+        <div className="p-4 overflow-auto flex-1">
+          {messages.map((message) => (
+            <Message key={message.id} message={message} />
+          ))}
+          <div ref={chatEndRef} />
+        </div>
+      )}
       <MessageInput />
     </div>
   );
@@ -75,12 +87,12 @@ function ConversationScreen({ messages }: { messages: MessageType[] }) {
 
 export default function MessageContainer() {
   const { selectedConversation } = useConversation();
-  const { messages } = useGetMessages();
+  const { messages, loading } = useGetMessages();
 
   return (
     <div className="flex flex-col w-full">
       {selectedConversation && selectedConversation ? (
-        <ConversationScreen messages={messages} />
+        <ConversationScreen messages={messages} loading={loading} />
       ) : (
         <DefaultScreen />
       )}

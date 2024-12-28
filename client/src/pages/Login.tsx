@@ -9,11 +9,10 @@ export default function Login() {
     password: "",
   });
 
-  const { login, loading } = useLogin();
+  const { login, loading, error } = useLogin();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-
     login(inputs);
   };
 
@@ -66,6 +65,7 @@ export default function Login() {
               required
             />
           </label>
+          {error && <p className="text-red-500">{error}</p>}
           <button type="submit" className="btn btn-info" disabled={loading}>
             {loading ? "Loading..." : "Login"}
           </button>

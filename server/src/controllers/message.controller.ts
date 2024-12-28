@@ -104,6 +104,9 @@ export const getConversations = async (
           },
         },
       },
+      orderBy: {
+        updatedAt: "desc",
+      },
     });
     res.status(200).json({ conversations: conversations });
   } catch (error) {

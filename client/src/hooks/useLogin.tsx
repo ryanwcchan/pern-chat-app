@@ -9,9 +9,11 @@ type Inputs = {
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { setAuthUser } = useAuthContext();
 
   const login = async (inputs: Inputs) => {
+    setError("");
     try {
       setLoading(true);
       const response = await fetch("/api/auth/login", {
@@ -24,11 +26,12 @@ const useLogin = () => {
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error);
+      if (response.ok) {
+        setAuthUser(data);
+      } else {
+        const errorData = data.error;
+        setError(errorData.message || "Invalid login credentials");
       }
-
-      setAuthUser(data);
     } catch (error: any) {
       console.error(error.message);
     } finally {
@@ -36,7 +39,7 @@ const useLogin = () => {
     }
   };
 
-  return { login, loading };
+  return { login, loading, error, setError };
 };
 
 export default useLogin;
