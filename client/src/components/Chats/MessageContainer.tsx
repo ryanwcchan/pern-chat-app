@@ -4,6 +4,7 @@ import useGetMessages from "../../hooks/useGetMessages";
 import { useAuthContext } from "../../context/useAuthContext";
 import MessageInput from "./MessageInput";
 import { useEffect, useRef } from "react";
+import { IoIosArrowBack } from "react-icons/io";
 
 function DefaultScreen() {
   return (
@@ -18,9 +19,11 @@ function DefaultScreen() {
 function ConversationScreen({
   messages,
   loading,
+  setView,
 }: {
   messages: MessageType[];
   loading: boolean;
+  setView: any;
 }) {
   const { selectedConversation } = useConversation();
   const { authUser } = useAuthContext();
@@ -54,6 +57,13 @@ function ConversationScreen({
     <div className="flex flex-col h-full">
       {/* Conversation Header */}
       <div className="bg-info p-[1.5rem] flex gap-4 items-center">
+        {/* Back Button for mobile view */}
+        <button
+          className="btn btn-square bg-info text-white md:hidden"
+          onClick={() => setView("sidebar")}
+        >
+          <IoIosArrowBack />
+        </button>
         <div>
           <img
             className="w-12 rounded-full"
@@ -85,14 +95,18 @@ function ConversationScreen({
   );
 }
 
-export default function MessageContainer() {
+export default function MessageContainer({ setView }: any) {
   const { selectedConversation } = useConversation();
   const { messages, loading } = useGetMessages();
 
   return (
     <div className="flex flex-col w-full">
       {selectedConversation && selectedConversation ? (
-        <ConversationScreen messages={messages} loading={loading} />
+        <ConversationScreen
+          messages={messages}
+          loading={loading}
+          setView={setView}
+        />
       ) : (
         <DefaultScreen />
       )}

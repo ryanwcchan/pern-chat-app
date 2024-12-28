@@ -8,12 +8,12 @@ export default function SearchInput() {
     <div className="flex gap-2 p-4">
       <form
         onSubmit={(e) => e.preventDefault}
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 w-full"
       >
         <input
           type="text"
           placeholder="Search"
-          className="input input-bordered bg-white focus:outline-none"
+          className="input input-bordered bg-white focus:outline-none w-full"
         />
         <button type="submit" className="btn btn-square bg-info text-white">
           <IoSearchSharp className="w-6 h-6 outline-none" />
