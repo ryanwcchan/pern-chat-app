@@ -2,10 +2,13 @@
 
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/useAuthContext";
+import { useSocketContext } from "../../context/SocketContext/useSocketContext";
 
-export default function Conversation({ conversation }: any) {
+export default function Conversation({ conversation, setView }: any) {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { authUser } = useAuthContext();
+
+  const { onlineUsers } = useSocketContext();
 
   if (!conversation) {
     return null;
@@ -15,11 +18,13 @@ export default function Conversation({ conversation }: any) {
     (user: { id: string | undefined }) => user.id !== authUser?.id
   );
 
+  const isOnline = otherUser ? onlineUsers.includes(otherUser.id) : false;
+
   const handleClick = () => {
     setSelectedConversation(conversation);
-    // if (window.innerWidth < 768) {
-    //   setView("chat");
-    // }
+    if (window.innerWidth < 768) {
+      setView("chat");
+    }
     console.log("Conversation clicked, convo id: ", conversation.id);
   };
 
@@ -33,7 +38,7 @@ export default function Conversation({ conversation }: any) {
           : ""
       }`}
     >
-      <div className="avatar">
+      <div className={`avatar ${isOnline ? "online" : ""}`}>
         <div className="w-12 rounded-full">
           <img src={otherUser?.profilePic} />
         </div>

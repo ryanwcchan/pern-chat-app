@@ -16,7 +16,11 @@ export default function Dashboard() {
 
       {/* Mobile view */}
       <div className="flex md:hidden min-h-[calc(100vh-8rem)]">
-        {view === "sidebar" ? <Sidebar /> : <MessageContainer />}
+        {view === "sidebar" ? (
+          <Sidebar setView={setView} />
+        ) : (
+          <MessageContainer setView={setView} />
+        )}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import { AuthContextProvider } from "./context/AuthProvider.tsx";
 import { RedirectRoute } from "./routes/RedirectRoute.tsx";
 import Profile from "./pages/Profile.tsx";
 import AddUsers from "./pages/AddUsers.tsx";
+import SocketContextProvider from "./context/SocketContext/SocketContextProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -75,7 +76,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AuthContextProvider>
-      <RouterProvider router={router} />
+      <SocketContextProvider>
+        <RouterProvider router={router} />
+      </SocketContextProvider>
     </AuthContextProvider>
   </StrictMode>
 );
