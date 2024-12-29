@@ -13,6 +13,10 @@ const io = new Server(server, {
   },
 });
 
+export const getReceiverSocketId = (receiverId: string) => {
+  return userSocketMap[receiverId];
+};
+
 const userSocketMap: { [key: string]: string } = {}; // userId: socketId
 
 io.on("connection", (socket) => {

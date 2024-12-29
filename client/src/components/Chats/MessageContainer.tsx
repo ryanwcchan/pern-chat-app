@@ -5,6 +5,8 @@ import { useAuthContext } from "../../context/useAuthContext";
 import MessageInput from "./MessageInput";
 import { useEffect, useRef } from "react";
 import { IoIosArrowBack } from "react-icons/io";
+import { useSocketContext } from "../../context/SocketContext/useSocketContext";
+import useListenMessages from "../../hooks/useListenMessages";
 
 function DefaultScreen() {
   return (
@@ -20,10 +22,12 @@ function ConversationScreen({
   messages,
   loading,
   setView,
+  onlineUsers,
 }: {
   messages: MessageType[];
   loading: boolean;
   setView: any;
+  onlineUsers: string[];
 }) {
   const { selectedConversation } = useConversation();
   const { authUser } = useAuthContext();
@@ -55,6 +59,8 @@ function ConversationScreen({
     (user: { id: string | undefined }) => user.id !== authUser?.id
   );
 
+  const isOnline = otherUser ? onlineUsers.includes(otherUser.id) : false;
+
   return (
     <div className="flex flex-col max-h-[calc(100vh-8rem)] flex-1">
       {/* Conversation Header */}
@@ -66,7 +72,7 @@ function ConversationScreen({
         >
           <IoIosArrowBack />
         </button>
-        <div>
+        <div className={`avatar w-12 ${isOnline ? "online" : ""}`}>
           <img
             className="w-12 rounded-full"
             src={otherUser?.profilePic}
@@ -105,6 +111,8 @@ function ConversationScreen({
 export default function MessageContainer({ setView }: any) {
   const { selectedConversation } = useConversation();
   const { messages, loading } = useGetMessages();
+  const { onlineUsers } = useSocketContext();
+  useListenMessages();
 
   return (
     <div className="flex flex-col w-full">
@@ -113,6 +121,7 @@ export default function MessageContainer({ setView }: any) {
           messages={messages}
           loading={loading}
           setView={setView}
+          onlineUsers={onlineUsers}
         />
       ) : (
         <DefaultScreen />

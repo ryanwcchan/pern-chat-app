@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 export type UserType = {
+  id: any;
   fullName: string;
   username: string;
   gender: string;
