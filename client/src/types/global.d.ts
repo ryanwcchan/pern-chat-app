@@ -1,7 +1,13 @@
 // Global types
 
 type ConversationType = {
-  users: any;
+  users: UserType;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type UserType = {
   id: string;
   username: string;
   fullName: string;
@@ -9,6 +15,7 @@ type ConversationType = {
 };
 
 type MessageType = {
+  conversationId: string;
   content: ReactNode;
   user: any;
   userId: string | undefined;

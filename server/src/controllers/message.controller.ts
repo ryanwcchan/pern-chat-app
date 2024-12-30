@@ -115,10 +115,37 @@ export const getConversations = async (
         updatedAt: "desc",
       },
     });
+
     res.status(200).json({ conversations: conversations });
   } catch (error) {
     console.log("Error in get conversations controller", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const updateConversationList = async (
+  conversationId: string
+): Promise<void> => {
+  try {
+    const updatedConversation = await prisma.conversations.findUnique({
+      where: { id: conversationId },
+      include: {
+        users: {
+          select: {
+            id: true,
+            username: true,
+            fullName: true,
+            profilePic: true,
+          },
+        },
+      },
+    });
+
+    if (updatedConversation) {
+      io.emit("updateConversationList", updatedConversation);
+    }
+  } catch (error) {
+    console.log("Error in update conversation list controller", error);
   }
 };
 
