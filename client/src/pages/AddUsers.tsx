@@ -27,7 +27,10 @@ export default function AddUsers() {
   const hasExistingConversation = (checkUser: {
     username: string | undefined;
   }) => {
-    return authUserConversations.has(checkUser.username);
+    return (
+      checkUser?.username !== undefined &&
+      authUserConversations.has(checkUser?.username)
+    );
   };
 
   return (

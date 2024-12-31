@@ -1,7 +1,7 @@
 // Global types
 
 type ConversationType = {
-  users: UserType;
+  users: UserType[];
   id: string;
   createdAt: string;
   updatedAt: string;

@@ -25,7 +25,7 @@ export default function UserCard({
   const navigateToChat = async () => {
     if (hasExistingConversation(user)) {
       const conversation =
-        conversations?.find((c) =>
+        conversations?.find((c: ConversationType) =>
           c?.users?.some(
             (u: { username: string }) => u?.username === user?.username
           )

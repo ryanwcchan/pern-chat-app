@@ -16,7 +16,7 @@ const useSendMessage = () => {
     console.log("Selected Conversation:", selectedConversation);
 
     const recipient = selectedConversation.users.find(
-      (user: any) => user.id !== authUser?.id // Exclude logged-in user to find the recipient
+      (user: UserType) => user.id !== authUser?.id // Exclude logged-in user to find the recipient
     );
 
     console.log("authUser:", authUser);
@@ -24,7 +24,7 @@ const useSendMessage = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`/api/chats/message/${recipient.id}`, {
+      const response = await fetch(`/api/chats/message/${recipient?.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const useSendMessage = () => {
       if (data.error) {
         throw new Error(data.error);
       }
-      console.log(`Message sent to recipient: ${recipient.id}`, data);
+      console.log(`Message sent to recipient: ${recipient?.id}`, data);
 
       setMessages([...messages, data.message]);
     } catch (error) {
