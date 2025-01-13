@@ -17,7 +17,7 @@ The purpose of this project was to deepen my understanding of full-stack develop
 
 - **Understand Deployment**: Learn to deploy a full-stack application to production environments, including configuring database hosting and managing environment variables.
 
-This project was an oppourtunity to learn and practice build a real-world application while improving my proficiency in developing dynamic, interactive, and secure web applications. This project was also a stepping stone for a more advanced project that includes real-time chatting features.
+This project was an oppourtunity to learn and practice building a real-world application while improving my proficiency in developing dynamic, interactive, and secure web applications. This project was also a stepping stone for a more advanced project that includes real-time chatting features.
 
 ## Features
 - **Real-Time Messaging**: Using __Socket.IO__ for real-time updates
