@@ -1,5 +1,5 @@
 # PERN Stack Chat App
-### Description
+## Description
 A real-time chat application with JWT user authentication. Chat and profile routes are protected. Users can find and add other users to start a conversation with. 
 
 ### Purpose
