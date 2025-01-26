@@ -3,6 +3,7 @@
     "target": "es2016",
     "module": "commonjs",
     "outDir": "./dist",
+    "rootDir": "./src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -10,6 +11,9 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    "types": ["node", "express"]
-  }
+    "types": ["node", "express"],
+    "resolveJsonModule": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
