@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/tsc && prisma generate --schema=./prisma/schema.prisma && prisma migrate deploy && npm install",
+    "build": "npm install typescript && npx tsc && prisma generate --schema=./prisma/schema.prisma && prisma migrate deploy",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts"
   },
