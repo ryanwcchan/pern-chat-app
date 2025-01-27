@@ -15,7 +15,7 @@ const allowedOrigin = process.env.VERCEL_URL
 
 app.use(
   cors({
-    origin: allowedOrigin, // Allow requests from any origin
+    origin: "*", // Allow requests from any origin
     credentials: true, // If your API needs cookies to be sent
   })
 );
