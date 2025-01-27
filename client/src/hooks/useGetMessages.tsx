@@ -15,7 +15,9 @@ const useGetMessages = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `/api/chats/conversation/${selectedConversation.id}/messages`
+          `${import.meta.env.VITE_API_URL}/api/chats/conversation/${
+            selectedConversation.id
+          }/messages`
         );
         const data = await response.json();
 

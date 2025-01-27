@@ -6,12 +6,15 @@ const useCreateConversation = () => {
   const createConversation = async (username: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/chats/conversation/${username}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/chats/conversation/${username}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await response.json();
       console.log(data);
 

@@ -9,7 +9,9 @@ const useGetConversations = () => {
     const fetchConversations = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/chats");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/chats`
+        );
         const data = await response.json();
 
         console.log(data.conversations);

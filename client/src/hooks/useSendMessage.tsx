@@ -24,13 +24,16 @@ const useSendMessage = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`/api/chats/message/${recipient?.id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/chats/message/${recipient?.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message }),
+        }
+      );
 
       const data = await response.json();
       if (data.error) {

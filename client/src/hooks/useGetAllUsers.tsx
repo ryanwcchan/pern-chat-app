@@ -17,7 +17,9 @@ const useGetAllUsers = () => {
     const getAllUsers = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/auth/allUsers");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/auth/allUsers`
+        );
         const data = await response.json();
         console.log(data);
         setUsers(data);
