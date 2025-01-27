@@ -9,6 +9,5 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "baseUrl": "./",
-    "types": ["node", "express"]
   }
 }
