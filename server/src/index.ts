@@ -9,16 +9,15 @@ import cors from "cors";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-const allowedOrigin = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}` // e.g., https://your-vercel-project.vercel.app
-  : "*";
 
 app.use(
   cors({
-    origin: "*", // Allow requests from any origin
-    credentials: true, // If your API needs cookies to be sent
+    origin: "https://pern-chat-app-1-6nfn.onrender.com",
+    methods: ["GET", "POST"],
+    credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use(express.json());
 
