@@ -12,12 +12,10 @@ const socket_1 = require("./socket/socket");
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const port = process.env.PORT || 3000;
-const allowedOrigin = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}` // e.g., https://your-vercel-project.vercel.app
-    : "*";
 socket_1.app.use((0, cors_1.default)({
-    origin: allowedOrigin, // Allow requests from any origin
-    credentials: true, // If your API needs cookies to be sent
+    origin: "https://pern-chat-app-1-6nfn.onrender.com",
+    methods: ["GET", "POST"],
+    credentials: true,
 }));
 socket_1.app.use((0, cookie_parser_1.default)());
 socket_1.app.use(express_1.default.json());
