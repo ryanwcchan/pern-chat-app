@@ -12,6 +12,7 @@ const io = new Server(server, {
       "https://pern-chat-app-1-6nfn.onrender.com",
     ],
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 

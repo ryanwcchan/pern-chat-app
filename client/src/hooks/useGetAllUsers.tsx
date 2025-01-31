@@ -18,7 +18,14 @@ const useGetAllUsers = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/auth/allUsers`
+          `${import.meta.env.VITE_API_URL}/api/auth/allUsers`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
         );
         const data = await response.json();
         console.log(data);

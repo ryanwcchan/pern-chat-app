@@ -17,7 +17,14 @@ const useGetMessages = () => {
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/api/chats/conversation/${
             selectedConversation.id
-          }/messages`
+          }/messages`,
+          {
+            method: "GET",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
         const data = await response.json();
 
