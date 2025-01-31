@@ -18,6 +18,7 @@ const io = new socket_io_1.Server(server, {
             "https://pern-chat-app-1-6nfn.onrender.com",
         ],
         methods: ["GET", "POST"],
+        credentials: true,
     },
 });
 exports.io = io;

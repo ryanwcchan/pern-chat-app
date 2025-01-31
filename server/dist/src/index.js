@@ -9,10 +9,20 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const auth_route_1 = __importDefault(require("./routes/auth.route"));
 const message_route_1 = __importDefault(require("./routes/message.route"));
 const socket_1 = require("./socket/socket");
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const port = process.env.PORT || 3000;
 socket_1.app.use((0, cookie_parser_1.default)());
 socket_1.app.use(express_1.default.json());
+socket_1.app.use((0, cors_1.default)({
+    origin: [
+        "http://localhost:5173",
+        "https://pern-chat-app-1-6nfn.onrender.com",
+    ], // Allow local and deployed frontend
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allow cookies/auth headers
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow custom headers
+}));
 socket_1.app.get("/", (req, res) => {
     res.send("Server is running");
 });
