@@ -9,19 +9,15 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const auth_route_1 = __importDefault(require("./routes/auth.route"));
 const message_route_1 = __importDefault(require("./routes/message.route"));
 const socket_1 = require("./socket/socket");
-const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const port = process.env.PORT || 3000;
 socket_1.app.use((0, cookie_parser_1.default)());
 socket_1.app.use(express_1.default.json());
+socket_1.app.get("/", (req, res) => {
+    res.send("Server is running");
+});
 socket_1.app.use("/api/auth", auth_route_1.default);
 socket_1.app.use("/api/chats", message_route_1.default);
-if (process.env.NODE_ENV !== "development") {
-    socket_1.app.use(express_1.default.static(path_1.default.join(__dirname, "../client/build")));
-    socket_1.app.get("*", (req, res) => {
-        res.sendFile(path_1.default.join(__dirname, "../client/build/index.html"));
-    });
-}
 socket_1.server.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
 });
