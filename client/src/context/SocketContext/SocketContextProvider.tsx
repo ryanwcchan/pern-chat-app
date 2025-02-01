@@ -4,7 +4,9 @@ import { SocketContext } from "./SocketContext";
 import io, { Socket } from "socket.io-client";
 
 const socketURL =
-  import.meta.env.MODE === "development" ? "http://localhost:3000" : "/";
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3000"
+    : "https://pern-chat-app-r3jf.onrender.com";
 
 const SocketContextProvider = ({ children }: { children: ReactNode }) => {
   const socketRef = useRef<Socket | null>(null);
@@ -17,6 +19,7 @@ const SocketContextProvider = ({ children }: { children: ReactNode }) => {
         query: {
           userId: authUser.id,
         },
+        withCredentials: true,
       });
 
       socketRef.current = socket;
