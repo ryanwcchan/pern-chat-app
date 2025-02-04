@@ -4,6 +4,7 @@ A real-time chat application with JWT user authentication. Chat and profile rout
 
 ## Live Preview
 Note: Backend may take up to a minute to start up due to free tier instance spindown.
+
 https://pern-chat-app-1-6nfn.onrender.com/
 
 ### Purpose
