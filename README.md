@@ -2,6 +2,10 @@
 ## Description
 A real-time chat application with JWT user authentication. Chat and profile routes are protected. Users can find and add other users to start a conversation with. 
 
+## Live Preview
+Note: Backend may take up to a minute to start up due to free tier instance spindown.
+https://pern-chat-app-1-6nfn.onrender.com/
+
 ### Purpose
 The purpose of this project was to deepen my understanding of full-stack development. By building this real-time chat application, I aimed to achieve the following:
 
