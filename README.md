@@ -28,6 +28,41 @@ This project was an oppourtunity to learn and practice building a real-world app
 - **Real-Time Messaging**: Using __Socket.IO__ for real-time updates
 - **User Authentication**: Login and sign up authenticated using JWT (JSON  Web Tokens)
 
+### Home Page
+- Landing page with navigation to login
+
+![Screenshot_2025-02-02_11-28-55](https://github.com/user-attachments/assets/a30747fd-f889-4842-8fe6-42bdbfb78f30)
+
+### Login Page
+- Users can login or sign up.
+- User is authenticated with JWT.
+
+![Screenshot_2025-02-06_09-30-14](https://github.com/user-attachments/assets/a9720e7b-f9e8-496b-bfd3-3dfdfa62502c)
+
+*Login form*
+
+![Screenshot_2025-02-06_09-30-34](https://github.com/user-attachments/assets/cb682ad9-d7f2-4203-9bf2-aa52c411965e)
+
+*Sign up form*
+
+### Chats
+- Once user is authenticated they can see the list of their chats.
+- Chats have real-time message updates using socket.io.
+
+![Screenshot_2025-02-06_09-32-43](https://github.com/user-attachments/assets/9d6f22b2-7ae7-4a90-a8f0-3f2fc8c14289)
+
+### Add Users Page
+- If user does not have any chats, they can add users by going to users page which shows all existing users.
+- If conversation between user already exists, it will navigate to conversation, otherwise a new conversation is created.
+
+![Screenshot_2025-02-06_09-33-21](https://github.com/user-attachments/assets/80207204-6bca-4f0d-be70-db08d39e8fca)
+
+*Users already added*
+
+![Screenshot_2025-02-06_09-39-39](https://github.com/user-attachments/assets/4e273de3-d75a-4c8a-afaf-f3dace809329)
+
+*Users not added will show an add button instead*
+
 ## Technologies Used
 ### Frontend
 - **React** with **TypeScript**: Learned how to build user interface with type safety.
